@@ -76,6 +76,10 @@ function Get-OPDomain {
                     DNSSec          = $domains[$i].is_dnssec_enabled
                     Sectigo         = $domains[$i].is_sectigo_dns_enabled
                     NameserverGroup = $domains[$i].ns_group
+                    OwnerHandle     = $domains[$i].owner_handle
+                    AdminHandle     = $domains[$i].admin_handle
+                    TechHandle      = $domains[$i].tech_handle
+
                 }
             }
             $return_object += $domain_object
