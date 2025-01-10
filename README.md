@@ -84,7 +84,7 @@ Note: The following DNS records can be added through this module:
 - TXT
 - NS
 
-Updating existing records can be done too. Use ```New-OPZoneRecordObject``` to create easy objects that can be parsed into ```Set-OPZoneRecord```. Here is an example how you could get a DNS record and adjust it to your needs:
+Here is an example how you could get a DNS record and adjust it to your needs:
 
 ```powershell
 $domain = "testdomain.com"
@@ -94,10 +94,6 @@ $zone = Get-OPZone -Domain $domain -Provider sectigo
 $zone_records = Get-OPZoneRecords -Domain $domain -Provider sectigo
 # filter the original record
 $original_record = $zone_records | Where-Object { ($_.type -eq "TXT") -and ($_.value -eq "v=SPF1 +all") }
-# create a new record object
-$new_record = New-OPZoneRecordObject -Type TXT -Value "v=SPF1 -all"
-# set the record 
-Set-OPZoneRecord -Domain $domain -ZoneID $zone.ZoneID -OriginalRecord $original_record -NewRecord $new_record
 ```
 
 ### Domain
