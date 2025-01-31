@@ -38,7 +38,7 @@ function Get-OPSSLOrders {
                 Product          = $order.product_name
                 Hostname         = $order.common_name
                 Status           = ($statusMap | Select-Object $($order.status)).$($order.status)
-                ExpirationDate   = [datetime]$order.expiration_date
+                ExpirationDate   = if ($null -ne $order.expiration_date) { [datetime]$order.expiration_date } else { $null }
                 Period           = $order.period
                 AutoRenew        = if ($order.autorenew -eq "on") { $true } else { $false }
                 ValidationMethod = $order.validation_method
